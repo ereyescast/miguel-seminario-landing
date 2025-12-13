@@ -1,0 +1,810 @@
+/* --------------------------------------------------------- */
+/* 📌 DESCRIPCIÓN GENERAL DEL SITIO (Explicación global)
+   ---------------------------------------------------------
+   Este CSS controla:
+   - Los colores del modo oscuro y modo claro.
+   - El diseño de toda la página web incluyendo:
+       ✔ Hero con imagen o video de fondo
+       ✔ Sección "Sobre mí"
+       ✔ Carrusel personalizado (Clubes)
+       ✔ Tarjetas de servicios
+       ✔ Formulario de contacto
+       ✔ Footer
+   - La internacionalización (selector de idioma)
+   - El modo claro/oscuro mediante variables CSS
+   - Responsividad para móvil, tablet y desktop
+   - Sombras, gradientes y efectos visuales
+   - Un carrusel con un ítem central agrandado
+   --------------------------------------------------------- */
+
+
+
+/* --------------------------------------------------------- */
+/* 🎨 VARIABLES PRINCIPALES (Modo oscuro por defecto)
+   --------------------------------------------------------- */
+:root {
+  --bg: #0f0f10;
+  /* fondo general oscuro */
+  --card: #0d0d0d;
+  /* color de las tarjetas */
+  --muted: #bfc3c8;
+  /* texto secundario */
+  --accent: #e6ff00;
+  /* color amarillo neón */
+  --text: #fff;
+  /* color de texto principal */
+  --glass: rgba(255, 255, 255, 0.04);
+  /* efecto glass */
+}
+
+/* --------------------------------------------------------- */
+/* 🌞 VARIABLES DEL MODO CLARO
+   (solo cambian lo necesario)
+   --------------------------------------------------------- */
+:root.light {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --muted: #4a4a4a;
+  --accent: #1db954;
+  /* verde estilo Spotify */
+  --text: #111;
+  --glass: rgba(0, 0, 0, 0.03);
+
+  /* Sombras exclusivas para el modo claro */
+  --hero-title-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+  --hero-text-shadow: 0 3px 14px rgba(0, 0, 0, 0.60);
+}
+
+/* Ajustes visuales del hero en modo claro */
+:root.light .hero-content h1 {
+  color: #ffffff !important;
+  text-shadow: var(--hero-title-shadow);
+}
+
+:root.light .hero-content p {
+  color: #f1f1f1 !important;
+  text-shadow: var(--hero-text-shadow);
+}
+
+
+/* --------------------------------------------------------- */
+/* 🧩 ESTILOS GENERALES
+   --------------------------------------------------------- */
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+   background: var(--bg); /* ← YA NO GENERA EL FONDO FEO */
+  /* degradado */
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  /* suaviza texto */
+}
+
+/* ---------------- TOPBAR ---------------- */
+.topbar {
+  background: transparent;
+  position: sticky;
+  /* se queda fijo arriba */
+  top: 0;
+  z-index: 999;
+  justify-content: flex-end;
+  padding-right: 12px;
+}
+
+/* Selector de idioma */
+.lang-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .18s;
+}
+
+.lang-btn:hover {
+  transform: translateY(-2px);
+}
+
+.lang-btn.active-lang {
+  background: var(--accent);
+  /* resalta idioma activo */
+  color: #000;
+  border-color: transparent;
+}
+
+.lang-sep {
+  color: rgba(255, 255, 255, 0.22);
+  font-weight: 700
+}
+
+
+/* --------------------------------------------------------- */
+/* 🎥 HERO (portada principal)
+   --------------------------------------------------------- */
+
+/* Fix específico para móviles (evita traslapes visuales) */
+@media (max-width: 576px) {
+  header.hero {
+    height: 480px;
+  }
+
+  #sobre-mi {
+    margin-top: 0 !important;
+    padding-top: 2rem !important;
+  }
+
+  #sobre-mi .container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+.hero {
+  height: 100vh;
+  /* pantalla completa */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-media img,
+.hero-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45) saturate(1.05);
+  /* oscurece para leer mejor texto */
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.25) 45%,
+      rgba(0, 0, 0, 0.3) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+}
+
+/* Título del hero */
+.hero-content h1 {
+  font-size: clamp(30px, 6vw, 56px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.82) !important;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Texto del hero */
+.hero-content p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.82) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Botón de llamada a la acción */
+.btn-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  border: none;
+  transition: transform .22s, filter .22s;
+}
+
+.btn-cta:hover {
+  transform: translateY(-3px);
+  filter: brightness(.98)
+}
+
+
+/* --------------------------------------------------------- */
+/* 🧍 SOBRE MÍ
+   --------------------------------------------------------- */
+#sobre-mi {
+  padding: 50px 0 30px 0
+}
+
+.titulo-seccion {
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: var(--text-primary, #fff);
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+}
+
+.subtitulo-seccion {
+  font-size: 1.2rem;
+  color: var(--text-secondary, #ddd);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.foto-entrenador {
+  width: 100%;
+  max-width: 360px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+
+/* --------------------------------------------------------- */
+/* 🏆 CARRUSEL PERSONALIZADO (Clubes)
+   --------------------------------------------------------- */
+.carrusel-img {
+  height: 100%;
+  object-fit: cover;
+  width: 350px;
+}
+
+#carouselClubs .carousel-item img {
+  width: 150px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Contenedor principal */
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Botones de flechas */
+.arrow {
+  background: none;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Zona visible del carrusel */
+.carousel-container {
+  width: 75%;
+  overflow: hidden;
+  padding: 50px 0;
+}
+
+/* Pista deslizable */
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s ease;
+  align-items: center;
+}
+
+/* Cada ítem del carrusel */
+.item {
+  min-width: 180px;
+  margin: 0 30px;
+  opacity: 0.4;
+  /* apagado si no está en el centro */
+  transform: scale(0.8);
+  /* más pequeño */
+  transition: 0.35s ease;
+  text-align: center;
+}
+
+/* Imagen del item */
+.item img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  /* evita recortes */
+}
+
+/* Título y subtítulo */
+.item h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.item p {
+  font-size: 14px;
+  color: #555;
+  margin: 0
+}
+
+/* Item central con efecto destacado */
+.item.center {
+  transform: scale(1.3);
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.3));
+}
+
+.item.center img {
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+
+/* --------------------------------------------------------- */
+/* 📦 SERVICIOS
+   --------------------------------------------------------- */
+.servicio-card {
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: .36s cubic-bezier(.2, .9, .2, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+}
+
+.servicio-card .card-img {
+  height: 220px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.servicio-card h3 {
+  font-weight: 600;
+  margin: 10px 0 6px;
+}
+
+.servicio-card p {
+  color: var(--muted);
+  font-size: .95rem;
+  padding: 0 6px;
+  margin-bottom: 8px;
+}
+
+.servicio-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+}
+
+.servicios-sub{
+  color: var(--muted);
+}
+
+
+/* --------------------------------------------------------- */
+/* 📝 FORMULARIO
+   --------------------------------------------------------- */
+#formulario {
+  padding: 36px 0 48px 0;
+}
+
+.formulario {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.formulario input,
+.formulario select {
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.formulario input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-cta.w-100 {
+  width: 100%
+}
+
+
+/* --------------------------------------------------------- */
+/* 🔻 FOOTER
+   --------------------------------------------------------- */
+.footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+}
+
+.social-icons .si {
+  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--glass);
+  transition: .2s;
+}
+
+.social-icons .si:hover {
+  transform: translateY(-6px);
+  background: linear-gradient(180deg, rgba(255, 255, 0, 0.08), rgba(255, 255, 0, 0.03));
+}
+
+
+/* --------------------------------------------------------- */
+/* 📱 RESPONSIVE
+   --------------------------------------------------------- */
+@media (min-width:768px) and (max-width:1024px) {
+  .hero {
+    height: 70vh
+  }
+
+  .hero-content {
+    max-width: 900px
+  }
+
+  .carrusel-img {
+    height: 330px
+  }
+
+  .foto-entrenador {
+    max-width: 300px
+  }
+
+  .servicio-card .card-img {
+    height: 200px
+  }
+
+  .titulo-seccion {
+    font-size: 1.4rem
+  }
+}
+
+@media (max-width:767px) {
+  .hero {
+    height: 60vh
+  }
+
+  .hero-content {
+    padding: 0 20px
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem
+  }
+
+  .foto-entrenador {
+    max-width: 260px;
+    margin: 0 auto
+  }
+
+  .carrusel-img {
+    height: 260px
+  }
+
+  /* ajuste */
+  .servicio-card .card-img {
+    height: 180px
+  }
+}
+
+
+/* --------------------------------------------------------- */
+/* 🔶 ACCESIBILIDAD (visual focus)
+   --------------------------------------------------------- */
+a:focus,
+button:focus,
+input:focus {
+  outline: 2px solid rgba(230, 255, 0, 0.14);
+  outline-offset: 3px;
+}
+
+
+
+/* 🔥 CARRUSEL 2 — Igualado con el primer carrusel */
+
+.carrusel-img {
+  height: 100%;
+  object-fit: cover;
+  width: 350px;
+}
+
+#carouselClubs .carousel-item2 img {
+  width: 150px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Contenedor principal */
+.carousel-wrapper2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Ítems */
+.item-2 {
+  min-width: 180px;
+  margin: 0 30px;
+  opacity: 0.4;
+  /* apagado si no está en el centro */
+  transform: scale(0.8);
+  /* más pequeño */
+  transition: 0.35s ease;
+  text-align: center;
+}
+
+/* Imagen */
+.item-2 img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  /* evita recortes */
+}
+
+.item-2 h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.item-2 p {
+  font-size: 14px;
+  color: #555;
+  margin: 0
+}
+
+/* Item central con efecto destacado */
+.item-2.center {
+  transform: scale(1.3);
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.3));
+}
+
+.item-2.center img {
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+
+
+/* Flechas */
+.arrow-2 {
+  background: none;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+}
+
+
+
+/* ============================
+   CARRUSEL 2 - ESTILO SIMILAR AL PRINCIPAL
+============================= */
+
+.carousel-container-2 {
+    width: 75%;
+    overflow: hidden;
+    padding: 50px 0;;
+}
+
+.carousel-track-2 {
+    display: flex;
+    transition: transform 0.45s ease;
+    align-items: center
+}
+
+/* Flechas del carrusel */
+.carousel-button-2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    padding: 12px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-button-prev-2 {
+    left: 10px;
+}
+
+.carousel-button-next-2 {
+    right: 10px;
+}
+
+.carousel-button-2 img {
+    width: 20px;
+}
+
+/* --------------------------------------------------------- */
+/* 🔥 TITULOS DE SECCIÓN (Trayectoria) — ANIMADOS */
+/* --------------------------------------------------------- */
+
+.titulo-trayectoria {
+  text-align: center;
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin: 60px 0 28px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+/* Línea decorativa animada */
+.titulo-trayectoria::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  animation: lineGrow 0.9s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 90px;
+  }
+}
+
+/* Ajuste para modo claro */
+:root.light .titulo-trayectoria {
+  color: #111;
+}
+
+:root.light .titulo-trayectoria::after {
+  background: var(--accent);
+}
+
+
+/* 🔥 FIX: cuando el input tiene un valor seleccionado del datalist */
+input[list] {
+  color: #fff !important;
+}
+
+/* Placeholder sigue gris */
+input[list]::placeholder {
+  color: #888 !important;
+}
+
+
+
+/* ===========================
+   INPUTS — MODO OSCURO
+=========================== */
+:root:not(.light) input,
+:root:not(.light) select,
+:root:not(.light) textarea {
+  background-color: #1f252b;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+:root:not(.light) input::placeholder,
+:root:not(.light) textarea::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+/* Autofill oscuro */
+:root:not(.light) input:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0px 1000px #1f252b inset !important;
+}
+
+/* ===========================
+   INPUTS — MODO CLARO
+=========================== */
+:root.light input,
+:root.light select,
+:root.light textarea {
+  background-color: #ffffff;
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+:root.light input::placeholder,
+:root.light textarea::placeholder {
+  color: rgba(0,0,0,0.5);
+}
+
+/* Autofill claro */
+:root.light input:-webkit-autofill {
+  -webkit-text-fill-color: #111 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+/* Select objetivo */
+:root:not(.light) #objetivo {
+  color: rgba(255,255,255,0.55);
+}
+
+:root:not(.light) #objetivo:valid {
+  color: #ffffff;
+}
+
+:root.light #objetivo {
+  color: rgba(0,0,0,0.5);
+}
+
+:root.light #objetivo:valid {
+  color: #111;
+}
+
+
+/* ===============================
+   FIX INPUT + DATALIST (Distrito)
+=============================== */
+
+/* Modo claro */
+:root.light input[list] {
+  color: #111 !important;
+}
+
+/* Placeholder en modo claro */
+:root.light input[list]::placeholder {
+  color: rgba(0,0,0,0.5) !important;
+}
+
+/* Modo oscuro */
+:root:not(.light) input[list] {
+  color: #ffffff !important;
+}
+
+/* Placeholder en modo oscuro */
+:root:not(.light) input[list]::placeholder {
+  color: rgba(255,255,255,0.55) !important;
+}

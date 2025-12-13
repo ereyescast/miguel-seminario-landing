@@ -808,3 +808,31 @@ input[list]::placeholder {
 :root:not(.light) input[list]::placeholder {
   color: rgba(255,255,255,0.55) !important;
 }
+
+
+
+/* ===============================
+   TOPBAR – CONTRASTE POR TEMA
+================================ */
+
+/* MODO OSCURO (default) */
+html:not(.light) .topbar {
+  color: #e5e7eb; /* gris claro */
+}
+
+html:not(.light) #themeToggle {
+  color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* MODO CLARO */
+html.light .topbar {
+  color: #4b5563; /* gris oscuro */
+}
+
+html.light #themeToggle {
+  color: #1f2937;
+  border-color: #d1d5db;
+}
+
+

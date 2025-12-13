@@ -299,44 +299,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+/* ----------------------------------------------------
+   MODO OSCURO / CLARO (CORREGIDO)
+----------------------------------------------------- */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
 
-  /* ----------------------------------------------------
-     MODO OSCURO / CLARO
-     ----------------------------------------------------
-     - Guarda preferencia en localStorage.
-     - Detecta preferencia del sistema operativo.
-     - Cambia ícono dinámicamente.
-  ----------------------------------------------------- */
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
+if (themeToggle && themeIcon) {
 
-  const saved = localStorage.getItem('theme-mode');
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const savedTheme = localStorage.getItem('theme-mode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   function applyTheme(mode) {
     if (mode === 'light') {
       document.documentElement.classList.add('light');
-      themeIcon.className = 'bi bi-sun-fill';
+      themeIcon.className = 'bi bi-moon-fill'; // cambiar a oscuro
       localStorage.setItem('theme-mode', 'light');
     } else {
       document.documentElement.classList.remove('light');
-      themeIcon.className = 'bi bi-moon-fill';
+      themeIcon.className = 'bi bi-sun-fill'; // cambiar a claro
       localStorage.setItem('theme-mode', 'dark');
     }
   }
 
-  // Aplica tema inicial
-  applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+  // Tema inicial
+  applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
-  // Listener botón del switch
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isLight = document.documentElement.classList.contains('light');
-      applyTheme(isLight ? 'dark' : 'light');
-    });
-  }
-
-
+  // Toggle
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light');
+    applyTheme(isLight ? 'dark' : 'light');
+  });
+}
 
   /* ----------------------------------------------------
      ANIMACIONES GSAP (si GSAP está cargado)

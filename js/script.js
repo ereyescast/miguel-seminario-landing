@@ -53,6 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
       "topbar_theme_label": "Tema",
       "topbar_theme": "Modo",
 
+      "t-trayectoria-jugador-title": "Trayectoria profesional como jugador",
+      "t-tray-jugador-sel": "Selección Peruana",
+      "t-trayectoria-tecnico-title":"Trayectoria como director técnico",
+      "t-tray-tecnico-chapi-cat":"Segunda División",
+      "t-tray-tecnico-america-cat":"Segunda División",
+      "t-tray-tecnico-pena-cat":"Segunda División",
+      "t-tray-tecnico-utc-cat":"Segunda División",
+      "t-tray-tecnico-est-cat":"Segunda División",
+      "t-tray-tecnico-leon-cat":"Copa Perú",
+
       "t-sobremi-profesion": "Exfutbolista profesional y entrenador de fútbol",
       "t-sobremi-intro": "Soy un exfutbolista peruano reconocido por mi garra, técnica y pasión dentro del campo. A lo largo de mi carrera defendí la camiseta de importantes clubes del Perú y del extranjero, además de representar con orgullo a la selección nacional, convirtiéndome en un referente del fútbol peruano. Tras mi etapa como jugador, continué vinculado al fútbol como director técnico en diversos equipos del país.",
       "t-sobremi-final": "Hoy, con esa misma entrega, comparto mi experiencia formando a nuevas generaciones de jugadores, impulsando la disciplina, la mentalidad ganadora y los valores deportivos que construyen verdaderos campeones.",

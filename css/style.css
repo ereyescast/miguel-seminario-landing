@@ -836,3 +836,21 @@ html.light #themeToggle {
 }
 
 
+/* ===============================
+   FIX SELECT DELGADO EN IPHONE
+=============================== */
+
+@supports (-webkit-touch-callout: none) {
+
+  select,
+  .form-select {
+    min-height: 52px;      /* altura real */
+    padding-top: 12px;
+    padding-bottom: 12px;
+    line-height: 1.4;
+    font-size: 16px;       /* evita zoom iOS */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+

@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       "t-servicios-title": "Entrenamientos",
       "t-servicios-sub": "Técnica, potencia y definición con sesiones enfocadas al rendimiento.",
-      "t-serv1-title": "⚽ Técnica y Control",
+      "t-serv1-title": "Técnica y Control",
       "t-serv1-desc": "Mejora dominio del balón, pase y remate con ejercicios progresivos.",
-      "t-serv2-title": "🔥 Potencia y Velocidad",
+      "t-serv2-title": "Potencia y Velocidad",
       "t-serv2-desc": "Trabajo de fuerza y rapidez para ganar diferencia en el campo.",
-      "t-serv3-title": "🎯 Definición y Juego con Neurociencia",
-      "t-serv3-desc": "Lectura de juego y toma de decisiones rápidas basadas en neurociencia.",
-      "t-serv4-title": "⚽ Coordinación y Agilidad",
+      "t-serv3-title": "Ciencia aplicada al fútbol",
+      "t-serv3-desc": "Mejorar la atención y la concentración mediante ejercicios específicos para el fútbol.",
+      "t-serv4-title": "Coordinación y Agilidad",
       "t-serv4-desc": "Mejora reacción, cambios de ritmo y movimientos rápidos.",
-      "t-serv5-title": "🔥 Circuito de Motricidad y Conducción",
+      "t-serv5-title": "Circuito de Motricidad y Conducción",
       "t-serv5-desc": "Mejora la motricidad, agilidad, técnica en velocidad y finalización.",
-      "t-serv6-title": "🎯 Control y Definición",
+      "t-serv6-title": "Control y Definición",
       "t-serv6-desc": "Desmarques, control orientado y definición bajo presión.",
 
       "t-form-title": "Contáctame",
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "t-form-objetivo": "¿Qué quieres mejorar?",
       "t-obj-tecnica-control": "Técnica y Control",
       "t-obj-potencia-velocidad": "Potencia y Velocidad",
-      "t-obj-definicion-neuro": "Definición y Juego con Neurociencia",
+      "t-obj-definicion-neuro": "Ciencia aplicada al fútbol",
       "t-obj-coordinacion-agilidad": "Coordinación y Agilidad",
       "t-obj-circuito-motricidad": "Circuito de Motricidad y Conducción",
       "t-obj-control-definicion": "Control y Definición"
@@ -79,17 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       "t-servicios-title": "Training Sessions",
       "t-servicios-sub": "Technique, power and finishing with performance-focused sessions.",
-      "t-serv1-title": "⚽ Technique & Ball Control",
+      "t-serv1-title": "Technique & Ball Control",
       "t-serv1-desc": "Improve ball control, passing and shooting through progressive drills.",
-      "t-serv2-title": "🔥 Power & Speed",
+      "t-serv2-title": "Power & Speed",
       "t-serv2-desc": "Strength and acceleration work to gain an edge on the field.",
-      "t-serv3-title": "🎯 Finishing & Game Intelligence",
-      "t-serv3-desc": "Game reading and fast decision-making based on neuroscience.",
-      "t-serv4-title": "⚽ Coordination & Agility",
+      "t-serv3-title": "Applied Science in Football",
+      "t-serv3-desc": "Improve attention and concentration through football-specific exercises.",
+      "t-serv4-title": "Coordination & Agility",
       "t-serv4-desc": "Improve reaction, quick movements and change of pace.",
-      "t-serv5-title": "🔥 Motor Skills & Dribbling Circuit",
+      "t-serv5-title": "Motor Skills & Dribbling Circuit",
       "t-serv5-desc": "Enhance motor coordination, agility, speed technique and finishing.",
-      "t-serv6-title": "🎯 Control & Finishing",
+      "t-serv6-title": "Control & Finishing",
       "t-serv6-desc": "Movement off the ball, oriented control and finishing under pressure.",
 
       "t-form-title": "Contact Me",
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "t-form-objetivo": "What do you want to improve?",
       "t-obj-tecnica-control": "Technique and Control",
       "t-obj-potencia-velocidad": "Power and Speed",
-      "t-obj-definicion-neuro": "Finishing and Neuroscience-Based Play",
+      "t-obj-definicion-neuro": "Applied Science in Football",
       "t-obj-coordinacion-agilidad": "Coordination and Agility",
       "t-obj-circuito-motricidad": "Motor Skills and Dribbling Circuit",
       "t-obj-control-definicion": "Control and Finishing"
@@ -299,38 +299,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-/* ----------------------------------------------------
-   MODO OSCURO / CLARO (CORREGIDO)
------------------------------------------------------ */
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
+  /* ----------------------------------------------------
+     MODO OSCURO / CLARO (CORREGIDO)
+  ----------------------------------------------------- */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
 
-if (themeToggle && themeIcon) {
+  if (themeToggle && themeIcon) {
 
-  const savedTheme = localStorage.getItem('theme-mode');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme-mode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  function applyTheme(mode) {
-    if (mode === 'light') {
-      document.documentElement.classList.add('light');
-      themeIcon.className = 'bi bi-moon-fill'; // cambiar a oscuro
-      localStorage.setItem('theme-mode', 'light');
-    } else {
-      document.documentElement.classList.remove('light');
-      themeIcon.className = 'bi bi-sun-fill'; // cambiar a claro
-      localStorage.setItem('theme-mode', 'dark');
+    function applyTheme(mode) {
+      if (mode === 'light') {
+        document.documentElement.classList.add('light');
+        themeIcon.className = 'bi bi-moon-fill'; // cambiar a oscuro
+        localStorage.setItem('theme-mode', 'light');
+      } else {
+        document.documentElement.classList.remove('light');
+        themeIcon.className = 'bi bi-sun-fill'; // cambiar a claro
+        localStorage.setItem('theme-mode', 'dark');
+      }
     }
+
+    // Tema inicial
+    applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+    // Toggle
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.documentElement.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
   }
-
-  // Tema inicial
-  applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-
-  // Toggle
-  themeToggle.addEventListener('click', () => {
-    const isLight = document.documentElement.classList.contains('light');
-    applyTheme(isLight ? 'dark' : 'light');
-  });
-}
 
   /* ----------------------------------------------------
      ANIMACIONES GSAP (si GSAP está cargado)

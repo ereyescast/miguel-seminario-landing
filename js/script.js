@@ -622,4 +622,4 @@ let autoPlay2 = setInterval(nextItem2, 3000);
 function restartAutoPlay2() {
   clearInterval(autoPlay2);
   autoPlay2 = setInterval(nextItem2, 3000);
-} 
+}

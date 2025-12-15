@@ -298,8 +298,8 @@ body {
 
 /* Zona visible del carrusel */
 .carousel-container {
-  width: 100%;
-  overflow: visible; 
+  width: 75%;
+  overflow: hidden;
   padding: 50px 0;
 }
 

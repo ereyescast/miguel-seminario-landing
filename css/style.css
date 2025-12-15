@@ -298,8 +298,8 @@ body {
 
 /* Zona visible del carrusel */
 .carousel-container {
-  width: 75%;
-  overflow: hidden;
+  width: 100%;
+  overflow: visible; 
   padding: 50px 0;
 }
 
@@ -866,4 +866,17 @@ html.light #themeToggle {
 
 .input-error {
   border: 2px solid #ff4d4f;
+}
+
+
+.carousel-viewport {
+  width: 75%;
+  overflow: hidden; 
+}
+
+.item img {
+  padding: 6px;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }

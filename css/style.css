@@ -324,9 +324,10 @@ body {
 
 /* Imagen del item */
 .item img {
-  width: 100%;
-  height: 160px;
+  width: 120px;     /* controla el ancho real */
+  height: 120px;    /* controla el alto */
   object-fit: contain;
+  margin: 0 auto;   /* centra la imagen */
   /* evita recortes */
 }
 
@@ -566,10 +567,10 @@ input:focus {
 
 /* Imagen */
 .item-2 img {
-  width: 100%;
-  height: 160px;
+   width: 120px;     /* controla el ancho real */
+  height: 120px;    /* controla el alto */
   object-fit: contain;
-  /* evita recortes */
+  margin: 0 auto;  
 }
 
 .item-2 h4 {
@@ -866,4 +867,13 @@ html.light #themeToggle {
 
 .input-error {
   border: 2px solid #ff4d4f;
+}
+
+
+
+
+.item.center,
+.item-2.center {
+  transform: scale(1.15); /* antes 1.3 */
+  opacity: 1;
 }

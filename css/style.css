@@ -854,3 +854,16 @@ html.light #themeToggle {
   }
 }
 
+
+
+
+
+.error-msg {
+  color: #ff4d4f;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.input-error {
+  border: 2px solid #ff4d4f;
+}

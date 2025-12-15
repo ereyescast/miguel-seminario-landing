@@ -42,8 +42,7 @@
   <div class="topbar d-flex justify-content-end align-items-center px-3 py-2">
     <div class="me-3 small d-none d-md-block topbar-label" data-i18n="topbar_theme_label"></div>
 
-    <button id="themeToggle" class="btn btn-sm d-flex align-items-center me-3"
-      aria-label="Toggle theme">
+    <button id="themeToggle" class="btn btn-sm d-flex align-items-center me-3" aria-label="Toggle theme">
       <i id="themeIcon" class="bi"></i>
       <span class="ms-2 d-none d-sm-inline" data-i18n="topbar_theme"></span>
     </button>
@@ -209,7 +208,7 @@
 
       <h2 id="t-servicios-title" class="titulo-seccion" data-i18n="t-servicios-title"></h2>
       <p id="t-servicios-sub" class="servicios-sub mb-4" data-i18n="t-servicios-sub"></p>
-     
+
 
       <div class="row g-4">
         <div class="col-md-6 col-lg-4">
@@ -288,23 +287,26 @@
 
       <form id="leadForm" class="formulario mx-auto">
         <input type="text" id="nombre" placeholder="Tu nombre" data-i18n-placeholder="t-form-nombre" required>
-
-        <input id="distrito" class="formulario__campo" list="listaDistritos" placeholder="Selecciona tu distrito" data-i18n-placeholder="t-form-distrito" autocomplete="off" required>
+        <small class="error-msg" id="error-nombre" data-i18n="err-nombre"></small>
+        <input id="distrito" class="formulario__campo" list="listaDistritos" placeholder="Selecciona tu distrito"
+          data-i18n-placeholder="t-form-distrito" autocomplete="off" required>
+        <small class="error-msg" id="error-distrito" data-i18n="err-distrito"></small>
         <datalist id="listaDistritos"></datalist>
 
 
-       <select id="objetivo" class="formulario__campo" required>
+        <select id="objetivo" class="formulario__campo" required>
 
-  <!-- Placeholder -->
-  <option value="" disabled selected hidden data-i18n="t-form-objetivo"></option>
-  <option value="tecnica-control" data-i18n="t-obj-tecnica-control"></option>
-  <option value="potencia-velocidad" data-i18n="t-obj-potencia-velocidad"></option>
-  <option value="definicion-neuro" data-i18n="t-obj-definicion-neuro"></option>
-  <option value="coordinacion-agilidad" data-i18n="t-obj-coordinacion-agilidad"></option>
-  <option value="circuito-motricidad" data-i18n="t-obj-circuito-motricidad"></option>
-  <option value="control-definicion" data-i18n="t-obj-control-definicion"></option>
+          <!-- Placeholder -->
+          <option value="" disabled selected hidden data-i18n="t-form-objetivo"></option>
+          <option value="tecnica-control" data-i18n="t-obj-tecnica-control"></option>
+          <option value="potencia-velocidad" data-i18n="t-obj-potencia-velocidad"></option>
+          <option value="definicion-neuro" data-i18n="t-obj-definicion-neuro"></option>
+          <option value="coordinacion-agilidad" data-i18n="t-obj-coordinacion-agilidad"></option>
+          <option value="circuito-motricidad" data-i18n="t-obj-circuito-motricidad"></option>
+          <option value="control-definicion" data-i18n="t-obj-control-definicion"></option>
 
-</select>
+        </select>
+        <small class="error-msg" id="error-objetivo" data-i18n="err-objetivo"></small>
         <button type="submit" id="t-form-btn" class="btn btn-cta w-100" data-i18n="t-form-btn"></button>
       </form>
     </div>

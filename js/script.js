@@ -5,7 +5,26 @@
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ================================
+  // VALIDACIONES FORMULARIO
+  // ================================
+  function limpiarTexto(texto) {
+    return texto.replace(/\s+/g, ' ').trim();
+  }
 
+  function validarNombre(nombre) {
+  return /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+(?:[ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*$/.test(nombre.trim());
+}
+
+
+  function validarDistrito(distrito) {
+     const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ]+(?:\s[A-Za-zÁÉÍÓÚáéíóúÑñüÜ]+)*(?:[–-][A-Za-zÁÉÍÓÚáéíóúÑñüÜ]+(?:\s[A-Za-zÁÉÍÓÚáéíóúÑñüÜ]+)*)?$/;
+  return regex.test(distrito.trim());
+  }
+
+  function normalizarGuion(texto) {
+  return texto.replace(/[‐-‒–—―]/g, '-');
+}
   /* ----------------------------------------------------
      TRADUCCIONES (Sistema de internacionalización ES/EN)
      ----------------------------------------------------
@@ -44,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "t-form-title": "Contáctame",
       "t-form-sub": "Completa tus datos y te contacto por WhatsApp.",
       "t-form-nombre": "Tu nombre",
-      "t-form-distrito": "Selecciona tu distrito",
+      "t-form-distrito": "Tu distrito",
       "t-form-objetivo": "¿Qué quieres mejorar?",
       "t-form-btn": "Enviar por WhatsApp",
 
@@ -55,13 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       "t-trayectoria-jugador-title": "Trayectoria profesional como jugador",
       "t-tray-jugador-sel": "Selección Peruana",
-      "t-trayectoria-tecnico-title":"Trayectoria como director técnico",
-      "t-tray-tecnico-chapi-cat":"Segunda División",
-      "t-tray-tecnico-america-cat":"Segunda División",
-      "t-tray-tecnico-pena-cat":"Segunda División",
-      "t-tray-tecnico-utc-cat":"Segunda División",
-      "t-tray-tecnico-est-cat":"Segunda División",
-      "t-tray-tecnico-leon-cat":"Copa Perú",
+      "t-trayectoria-tecnico-title": "Trayectoria como director técnico",
+      "t-tray-tecnico-chapi-cat": "Segunda División",
+      "t-tray-tecnico-america-cat": "Segunda División",
+      "t-tray-tecnico-pena-cat": "Segunda División",
+      "t-tray-tecnico-utc-cat": "Segunda División",
+      "t-tray-tecnico-est-cat": "Segunda División",
+      "t-tray-tecnico-leon-cat": "Copa Perú",
 
       "t-sobremi-profesion": "Exfutbolista profesional y entrenador de fútbol",
       "t-sobremi-intro": "Soy un exfutbolista peruano reconocido por mi garra, técnica y pasión dentro del campo. A lo largo de mi carrera defendí la camiseta de importantes clubes del Perú y del extranjero, además de representar con orgullo a la selección nacional, convirtiéndome en un referente del fútbol peruano. Tras mi etapa como jugador, continué vinculado al fútbol como director técnico en diversos equipos del país.",
@@ -73,7 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "t-obj-definicion-neuro": "Ciencia aplicada al fútbol",
       "t-obj-coordinacion-agilidad": "Coordinación y Agilidad",
       "t-obj-circuito-motricidad": "Circuito de Motricidad y Conducción",
-      "t-obj-control-definicion": "Control y Definición"
+      "t-obj-control-definicion": "Control y Definición",
+
+      "err-nombre": "Ingresa un nombre válido (solo letras).",
+      "err-distrito": "El distrito no es válido.",
+      "err-objetivo": "Selecciona una opción."
+
     },
     en: {
       "meta_title": "Train With Me - Miguel Loco Seminario",
@@ -105,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "t-form-title": "Contact Me",
       "t-form-sub": "Fill out your info and I'll reach you on WhatsApp.",
       "t-form-nombre": "Your name",
-      "t-form-distrito": "Select your district",
+      "t-form-distrito": "Your district",
       "t-form-objetivo": "What do you want to improve?",
       "t-form-btn": "Send via WhatsApp",
 
@@ -134,7 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "t-obj-definicion-neuro": "Applied Science in Football",
       "t-obj-coordinacion-agilidad": "Coordination and Agility",
       "t-obj-circuito-motricidad": "Motor Skills and Dribbling Circuit",
-      "t-obj-control-definicion": "Control and Finishing"
+      "t-obj-control-definicion": "Control and Finishing",
+
+
+      "err-nombre": "Enter a valid name (letters only).",
+      "err-distrito": "Enter a valid district.",
+      "err-objetivo": "Select an option."
 
     }
 
@@ -285,27 +314,61 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Obtiene valores
-      const nombre = (document.getElementById('nombre') || {}).value || '';
-      const distrito = (document.getElementById('distrito') || {}).value || '';
-      const objetivoSelect = document.getElementById("objetivo");
+      // Inputs
+      const inputNombre = document.getElementById('nombre');
+      const inputDistrito = document.getElementById('distrito');
+      const objetivoSelect = document.getElementById('objetivo');
+
+      // Errors
+      const errNombre = document.getElementById('error-nombre');
+      const errDistrito = document.getElementById('error-distrito');
+      const errObjetivo = document.getElementById('error-objetivo');
+
+      // Reset
+      [errNombre, errDistrito, errObjetivo].forEach(e => e.style.display = 'none');
+      [inputNombre, inputDistrito, objetivoSelect].forEach(i => i.classList.remove('input-error'));
+
+      const nombre = normalizarGuion(limpiarTexto(inputNombre.value));
+      const distrito = normalizarGuion(limpiarTexto(inputDistrito.value));
       const objetivo = objetivoSelect.options[objetivoSelect.selectedIndex].textContent;
 
-      // Validación básica
-      if (!nombre || !distrito || !objetivo) {
-        alert(lang === 'es' ? 'Por favor completa todos los campos.' : 'Please complete all fields.');
-        return;
+      let hasError = false;
+
+      // Validar nombre
+      if (!validarNombre(nombre)) {
+        errNombre.textContent = translations[lang]['err-nombre'];
+        errNombre.style.display = 'block';
+        inputNombre.classList.add('input-error');
+        hasError = true;
       }
 
-      // Mensaje dinámico según idioma
+      // Validar distrito
+      if (!validarDistrito(distrito)) {
+        errDistrito.textContent = translations[lang]['err-distrito'];
+        errDistrito.style.display = 'block';
+        inputDistrito.classList.add('input-error');
+        hasError = true;
+      }
+
+      // Validar objetivo
+      if (!objetivoSelect.value) {
+        errObjetivo.textContent = translations[lang]['err-objetivo'];
+        errObjetivo.style.display = 'block';
+        objetivoSelect.classList.add('input-error');
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // WhatsApp
       const mensaje = lang === 'es'
         ? `Hola Miguel, soy ${nombre}. Vivo en ${distrito} y quiero mejorar ${objetivo.toLowerCase()}.`
         : `Hi Miguel, I'm ${nombre}. I live in ${distrito} and I want to improve ${objetivo.toLowerCase()}.`;
 
-      // Redirige a WhatsApp
-      const url = `https://wa.me/51993925765?text=${encodeURIComponent(mensaje)}`;
-      window.location.href = url;
+      window.location.href =
+        `https://wa.me/51993925765?text=${encodeURIComponent(mensaje)}`;
     });
+
   }
 
 

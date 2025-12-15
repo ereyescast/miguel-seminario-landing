@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://miguel-seminario-web2.vercel.app/sitemap.xml

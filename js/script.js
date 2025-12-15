@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
       "topbar_theme_label": "Tema",
       "topbar_theme": "Modo",
 
-      "t-trayectoria-jugador-title": "Trayectoria profesional como jugador",
+      "t-trayectoria-jugador-title": "Mi carrera como jugador",
       "t-tray-jugador-sel": "Selección Peruana",
-      "t-trayectoria-tecnico-title": "Trayectoria como director técnico",
+      "t-trayectoria-tecnico-title": "Mi etapa como entrenador",
       "t-tray-tecnico-chapi-cat": "Segunda División",
       "t-tray-tecnico-america-cat": "Segunda División",
       "t-tray-tecnico-pena-cat": "Segunda División",
@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
       "topbar_theme_label": "Theme",
       "topbar_theme": "Mode",
 
-      "t-trayectoria-jugador-title": "Professional Playing Career",
+      "t-trayectoria-jugador-title": "My playing career",
       "t-tray-jugador-sel": "Peruvian National Team",
-      "t-trayectoria-tecnico-title": "Head Coaching Career",
+      "t-trayectoria-tecnico-title": "My coaching career",
       "t-tray-tecnico-chapi-cat": "Second Division",
       "t-tray-tecnico-america-cat": "Second Division",
       "t-tray-tecnico-pena-cat": "Second Division",

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   -----------------------------------------------------*/
   const translations = {
     es: {
-      "meta_title": "Entrena Conmigo - Miguel Loco Seminario",
+      
 
       "t-hero-title": "Miguel Loco Seminario",
       "t-hero-sub": "Entrena con la experiencia de un exfutbolista profesional y entrenador con Licencia Pro FIFA–CONMEBOL.",
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     },
     en: {
-      "meta_title": "Train With Me - Miguel Loco Seminario",
+      
 
       "t-hero-title": "Miguel Loco Seminario",
       "t-hero-sub": "Train with the experience of a former professional footballer and a coach with a FIFA–CONMEBOL Pro License.",
@@ -212,9 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (opt && translations[lang]) {
       opt.textContent = translations[lang]['t-form-distrito-placeholder'];
     }
-
-    // Cambia el título de la pestaña del navegador
-    document.title = translations[lang]['meta_title'] || document.title;
 
     // Marca visual del idioma activo
     document.getElementById('btn-es').classList.toggle('active-lang', lang === 'es');
